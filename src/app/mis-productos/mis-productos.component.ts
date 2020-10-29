@@ -34,6 +34,8 @@ export class MisProductosComponent implements OnInit {
     ubicacion: new FormControl('', Validators.required)
   })
 
+  
+
 //Variable para almacenar nuevas ventas y editadas
   nuevaVenta:any;
 
@@ -53,12 +55,14 @@ export class MisProductosComponent implements OnInit {
       imagenUrl:'./../../assets/iphone12.jpeg',
       peso:'5',
       altura:'20',
-      volumen:'62,47',
+      volumen:'62.47',
       ubicacion:'Ciudad Guayana'
     }
   ];
 
   constructor() { }
+
+  
 
   crearArticulo = () =>{
     this.nuevaVenta = this.formularioParaCrear.value
@@ -82,9 +86,24 @@ export class MisProductosComponent implements OnInit {
     })
   }
 
-  botonEditar = (id) =>{
-    this.formularioParaEditar = this.productosEnVenta[id]
-    console.log(this.formularioParaEditar.value)
+  botonEditar = () =>{
+
+    this.formularioParaEditar.setValue({
+      titulo: this.descripcionDeVenta[0].titulo,
+      precio: this.descripcionDeVenta[0].precio,
+      peso: this.descripcionDeVenta[0].peso,
+      altura: this.descripcionDeVenta[0].altura,
+      volumen: this.descripcionDeVenta[0].volumen,
+      descripcion: this.descripcionDeVenta[0].descripcion,
+      ubicacion: this.descripcionDeVenta[0].ubicacion,
+      imagenUrl: '',
+    })
+  }
+
+  editarArticulo = () =>{
+    this.nuevaVenta = this.formularioParaEditar.value
+    this.nuevaVenta.id = this.descripcionDeVenta[0].id
+    this.productosEnVenta.splice(this.descripcionDeVenta[0].id , 1 , this.nuevaVenta)
   }
 
   ngOnInit(): void {

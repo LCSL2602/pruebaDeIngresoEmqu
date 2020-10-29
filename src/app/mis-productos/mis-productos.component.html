@@ -177,7 +177,85 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" (click)='eliminarArticulo(descripcionDeVenta[0].id)' data-dismiss="modal"> Eliminar </button>
-          <button type="button" class="btn btn-warning" (click)='botonEditar(descripcionDeVenta[0].id)'> Editar </button>
+          <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#ModalDeEditar" data-dismiss="modal" (click)='botonEditar()' > Editar </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <!--modal de agregar articulo-->
+  <div class="modal fade" id="ModalDeEditar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-light">
+          <h5 class="modal-title" id="exampleModalLabel">Editar articulo</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]='formularioParaEditar' >
+              <div class="form-row" >
+                  <div class="col-sm-8">
+                      <input type="text" class="form-control" placeholder="Titulo"  formControlName='titulo' [class.bordeError]='formularioParaEditar.get("titulo").errors && formularioParaEditar.get("titulo").touched' >
+                      <div *ngIf="formularioParaEditar.get('titulo').errors && formularioParaEditar.get('titulo').touched" >
+                          <small *ngIf='formularioParaEditar.get("titulo").hasError("required")' >El campo es requerido</small>
+                        </div>
+                    </div>
+                  <div class="col-sm-4">
+                      <input type="number" class="form-control" placeholder="Precio $" formControlName='precio' [class.bordeError]='formularioParaEditar.get("precio").errors && formularioParaEditar.get("precio").touched' >
+                      <div *ngIf="formularioParaEditar.get('precio').errors && formularioParaEditar.get('precio').touched" >
+                          <small *ngIf='formularioParaEditar.get("precio").hasError("required")' >El campo es requerido</small>
+                        </div>
+                    </div>
+              </div>
+                <div class="form-row mt-2">
+                    <h6>Caracteristicas</h6>
+                </div>
+                <div class="form-row mt-1">
+                    <div class="col-sm-4">
+                        <input type="number" class="form-control" placeholder="Peso (kg)" formControlName='peso' [class.bordeError]='formularioParaEditar.get("peso").errors && formularioParaEditar.get("peso").touched'  >
+                        <div *ngIf="formularioParaEditar.get('peso').errors && formularioParaEditar.get('peso').touched" >
+                            <small *ngIf='formularioParaEditar.get("peso").hasError("required")' >El campo es requerido</small>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <input type="number" class="form-control" placeholder="Altura (cm)"  formControlName='altura' [class.bordeError]='formularioParaEditar.get("altura").errors && formularioParaEditar.get("altura").touched' >
+                        <div *ngIf="formularioParaEditar.get('altura').errors && formularioParaEditar.get('altura').touched" >
+                            <small *ngIf='formularioParaEditar.get("altura").hasError("required")' >El campo es requerido</small>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <input type="number" class="form-control" placeholder="Volumen (cc)" formControlName='volumen' [class.bordeError]='formularioParaEditar.get("volumen").errors && formularioParaEditar.get("volumen").touched'  >
+                        <div *ngIf="formularioParaEditar.get('volumen').errors && formularioParaEditar.get('volumen').touched" >
+                            <small *ngIf='formularioParaEditar.get("volumen").hasError("required")' >El campo es requerido</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row mt-2">
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Ubicación" formControlName='ubicacion' >
+                    </div>
+                </div>
+                <div class="form-row mt-2">
+                    <textarea class='form-control' cols="10" rows="3" placeholder="Descripción" formControlName='descripcion' [class.bordeError]='formularioParaEditar.get("descripcion").errors && formularioParaEditar.get("descripcion").touched' ></textarea>
+                    <div *ngIf="formularioParaEditar.get('descripcion').errors && formularioParaEditar.get('descripcion').touched" >
+                        <small *ngIf='formularioParaEditar.get("descripcion").hasError("required")' >El campo es requerido</small>
+                      </div>
+                </div>
+                <div class='form-row mt-2'>
+                    <label for="Imagen">Selecciona la imagen del producto</label>
+                    <input type="file" class="form-control-file" id="Imagen" formControlName='imagenUrl' >
+                  </div>
+        </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" data-dismiss='modal' (click)='editarArticulo()' [disabled]='formularioParaEditar.invalid' >Editar</button>
         </div>
       </div>
     </div>
