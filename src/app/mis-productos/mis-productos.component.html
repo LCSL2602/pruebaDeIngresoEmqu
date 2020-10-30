@@ -84,18 +84,18 @@
                 <div class="form-row mt-2">
                     <div class="col-sm-6">
                         <input type="number" class="form-control" placeholder="Latitud" formControlName='Latitud'  [class.bordeError]='formularioParaCrear.get("Latitud").errors && formularioParaCrear.get("Latitud").touched' >
-                        <div *ngIf="formularioParaEditar.get('Latitud').errors && formularioParaEditar.get('Latitud').touched  " >
-                          <small *ngIf="formularioParaEditar.get('Latitud').hasError('required')" >El campo es requerido</small>
-                          <small *ngIf="formularioParaEditar.get('Latitud').hasError('min')" >La coordenada no es valida</small>
-                          <small *ngIf="formularioParaEditar.get('Latitud').hasError('max')" >La coordenada no es valida</small>
+                        <div *ngIf="formularioParaCrear.get('Latitud').errors && formularioParaCrear.get('Latitud').touched  " >
+                          <small *ngIf="formularioParaCrear.get('Latitud').hasError('required')" >El campo es requerido</small>
+                          <small *ngIf="formularioParaCrear.get('Latitud').hasError('min')" >La coordenada no es valida</small>
+                          <small *ngIf="formularioParaCrear.get('Latitud').hasError('max')" >La coordenada no es valida</small>
                        </div>
                     </div>
                     <div class="col-sm-6">
                       <input type="number" class="form-control" placeholder="Longitud" formControlName='Longitud' [class.bordeError]='formularioParaCrear.get("Longitud").errors && formularioParaCrear.get("Longitud").touched' >
-                      <div *ngIf="formularioParaEditar.get('Longitud').errors && formularioParaEditar.get('Longitud').touched " >
-                        <small *ngIf="formularioParaEditar.get('Longitud').hasError('required')" >El campo es requerido</small>
-                        <small *ngIf="formularioParaEditar.get('Longitud').hasError('min')" >La coordenada no es valida</small>
-                        <small *ngIf="formularioParaEditar.get('Longitud').hasError('max')" >La coordenada no es valida</small>
+                      <div *ngIf="formularioParaCrear.get('Longitud').errors && formularioParaCrear.get('Longitud').touched " >
+                        <small *ngIf="formularioParaCrear.get('Longitud').hasError('required')" >El campo es requerido</small>
+                        <small *ngIf="formularioParaCrear.get('Longitud').hasError('min')" >La coordenada no es valida</small>
+                        <small *ngIf="formularioParaCrear.get('Longitud').hasError('max')" >La coordenada no es valida</small>
                      </div>
                   </div>
                 </div>
@@ -135,6 +135,13 @@
         <div class="modal-body">
           <div *ngFor="let item of descripcionDeVenta"  >
             <div class="container">
+              <div class="row">
+                <div class="col">
+                  <h1>
+                    Detalles
+                  </h1>
+                </div>
+              </div>
                 <div class="row">
                     <div class="col-sm-7">
                         <h3>
@@ -180,7 +187,7 @@
                 <div class="row mt-2">
                     <div class="col">
                         <h1>
-                            {{item.precio}} $
+                          Total:  {{item.precio}} $
                         </h1>
                     </div>
                 </div>
