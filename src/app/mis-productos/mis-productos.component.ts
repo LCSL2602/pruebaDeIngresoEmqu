@@ -22,7 +22,8 @@ export class MisProductosComponent implements OnInit {
     volumen: new FormControl('', Validators.required),
     imagenUrl: new FormControl('', Validators.required),
     descripcion: new FormControl('', Validators.required),
-    ubicacion: new FormControl('', Validators.required)
+    Latitud: new FormControl('', Validators.required),
+    Longitud: new FormControl('', Validators.required)
   })
 
   formularioParaEditar = new FormGroup({
@@ -33,7 +34,8 @@ export class MisProductosComponent implements OnInit {
     volumen: new FormControl('', Validators.required),
     imagenUrl: new FormControl('', Validators.required),
     descripcion: new FormControl('', Validators.required),
-    ubicacion: new FormControl('', Validators.required)
+    Latitud: new FormControl('', Validators.required),
+    Longitud: new FormControl('', Validators.required)
   })
 
 //Auxiliar de la base de datos filtrada
@@ -59,7 +61,8 @@ export class MisProductosComponent implements OnInit {
       peso:'5',
       altura:'20',
       volumen:'62.47',
-      ubicacion:'Ciudad Guayana'
+      Latitud:23,
+      Longitud:50
     }
   ];
 
@@ -121,8 +124,9 @@ export class MisProductosComponent implements OnInit {
       altura: this.descripcionDeVenta[0].altura,
       volumen: this.descripcionDeVenta[0].volumen,
       descripcion: this.descripcionDeVenta[0].descripcion,
-      ubicacion: this.descripcionDeVenta[0].ubicacion,
-      imagenUrl: this.descripcionDeVenta[0].imagenUrl,
+      Latitud:this.descripcionDeVenta[0].Latitud,
+      Longitud:this.descripcionDeVenta[0].Longitud,
+      imagenUrl: this.descripcionDeVenta[0].imagenUrl
     })
   }
 
