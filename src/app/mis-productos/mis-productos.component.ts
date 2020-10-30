@@ -34,7 +34,8 @@ export class MisProductosComponent implements OnInit {
     ubicacion: new FormControl('', Validators.required)
   })
 
-  
+//Auxiliar de la base de datos filtrada
+   auxiliarBaseDatos:any='' ;
 
 //Variable para almacenar nuevas ventas y editadas
   nuevaVenta:any;
@@ -62,7 +63,31 @@ export class MisProductosComponent implements OnInit {
 
   constructor() { }
 
+  filtrarTitulo = () => {
+    if(this.auxiliarBaseDatos == '' && this.filtroDeBusqueda.get('tituloABuscar').value == '' ){
+      console.log('no hago nada porque esta vacio')
+    }else if(this.auxiliarBaseDatos == '' && this.filtroDeBusqueda.get('tituloABuscar').value != ''){
+      this.auxiliarBaseDatos = this.productosEnVenta.map(value =>{
+        return value
+      })
+      this.productosEnVenta = this.productosEnVenta.filter(item =>{
+        return item.titulo.includes(this.filtroDeBusqueda.get('tituloABuscar').value)
+      })
+      console.log(this.productosEnVenta)
+    }else if(this.auxiliarBaseDatos != '' && this.filtroDeBusqueda.get('tituloABuscar').value == ''){
+      this.productosEnVenta = this.auxiliarBaseDatos
+    }else if(this.auxiliarBaseDatos != '' && this.filtroDeBusqueda.get('tituloABuscar').value != ''){
+      console.log('filtro nuevamente ')
+      this.auxiliarBaseDatos = this.productosEnVenta.map(value =>{
+        return value
+      })
+      this.productosEnVenta = this.productosEnVenta.filter(item =>{
+        return item.titulo.includes(this.filtroDeBusqueda.get('tituloABuscar').value)
+      })
+    }
   
+  }
+
 
   crearArticulo = () =>{
     this.nuevaVenta = this.formularioParaCrear.value
@@ -103,7 +128,8 @@ export class MisProductosComponent implements OnInit {
   editarArticulo = () =>{
     this.nuevaVenta = this.formularioParaEditar.value
     this.nuevaVenta.id = this.descripcionDeVenta[0].id
-    this.productosEnVenta.splice(this.descripcionDeVenta[0].id , 1 , this.nuevaVenta)
+    let indice = this.productosEnVenta.indexOf(this.nuevaVenta.id)
+    this.productosEnVenta.splice(indice , 1 , this.nuevaVenta)
   }
 
   ngOnInit(): void {

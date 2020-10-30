@@ -3,7 +3,7 @@
     <a class="navbar-brand" style="font-size: 30px !important;">D-Market.com</a>
     <form class="form-inline" [formGroup]='filtroDeBusqueda' >
         <input class="form-control mr-sm-2" formControlName='tituloABuscar' type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+        <button class="btn btn-outline-light my-2 my-sm-0" (click)='filtrarTitulo()'>Buscar</button>
       </form>
       <button class='btn btn-outline-light rounded-circle' data-toggle="modal" data-target="#ModalDeAgregar" style="font-size: 30px; padding-top: 2px !important ;" >
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
