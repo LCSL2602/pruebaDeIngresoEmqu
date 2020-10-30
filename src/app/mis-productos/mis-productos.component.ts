@@ -61,8 +61,8 @@ export class MisProductosComponent implements OnInit {
       peso:'5',
       altura:'20',
       volumen:'62.47',
-      Latitud:23,
-      Longitud:50
+      Latitud:6.621,
+      Longitud:-64.501
     }
   ];
 
