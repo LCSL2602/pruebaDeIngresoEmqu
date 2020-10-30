@@ -12,6 +12,8 @@ export class MisProductosComponent implements OnInit {
     tituloABuscar: new FormControl('')
   })
 
+  imagen: any;
+
   formularioParaCrear = new FormGroup({
     titulo: new FormControl('', Validators.required),
     precio: new FormControl('', Validators.required),
@@ -89,29 +91,28 @@ export class MisProductosComponent implements OnInit {
   }
 
 
-  crearArticulo = () =>{
+  crearArticulo = () => {
     this.nuevaVenta = this.formularioParaCrear.value
     this.nuevaVenta.id = this.contadorDeVentas + 1
+    this.nuevaVenta.imagenUrl = 'data:image/png;base64,' + btoa(this.imagen)
     this.productosEnVenta.push(this.nuevaVenta)
     this.contadorDeVentas++
-    this.formularioParaCrear.reset()
-    
   }
 
-  abrirDescripcion = (id) =>{
+  abrirDescripcion = (id) => {
     this.descripcionDeVenta = this.productosEnVenta.filter(item =>{
       return item.id === id
     })
   }
 
-  eliminarArticulo = (id) =>{
+  eliminarArticulo = (id) => {
     
     this.productosEnVenta = this.productosEnVenta.filter(item =>{
       return item.id != id
     })
   }
 
-  botonEditar = () =>{
+  botonEditar = () => {
 
     this.formularioParaEditar.setValue({
       titulo: this.descripcionDeVenta[0].titulo,
@@ -121,15 +122,31 @@ export class MisProductosComponent implements OnInit {
       volumen: this.descripcionDeVenta[0].volumen,
       descripcion: this.descripcionDeVenta[0].descripcion,
       ubicacion: this.descripcionDeVenta[0].ubicacion,
-      imagenUrl: '',
+      imagenUrl: this.descripcionDeVenta[0].imagenUrl,
     })
   }
 
-  editarArticulo = () =>{
+  editarArticulo = () => {
     this.nuevaVenta = this.formularioParaEditar.value
     this.nuevaVenta.id = this.descripcionDeVenta[0].id
+    this.nuevaVenta.imagenUrl = 'data:image/png;base64,' + btoa(this.imagen)
     let indice = this.productosEnVenta.indexOf(this.nuevaVenta.id)
     this.productosEnVenta.splice(indice , 1 , this.nuevaVenta)
+  }
+
+  editarImagenProducto = (event) => {
+
+    const archivo = event.target.files[0];
+
+    if (archivo) {
+      const reader = new FileReader();
+      reader.onload = this.handleReaderLoadedOurTeam.bind(this);
+      reader.readAsBinaryString(archivo);
+    }
+  }
+
+  handleReaderLoadedOurTeam(event) {
+    this.imagen = event.target.result;
   }
 
   ngOnInit(): void {
