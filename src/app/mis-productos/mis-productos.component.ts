@@ -22,8 +22,8 @@ export class MisProductosComponent implements OnInit {
     volumen: new FormControl('', Validators.required),
     imagenUrl: new FormControl('', Validators.required),
     descripcion: new FormControl('', Validators.required),
-    Latitud: new FormControl('', Validators.required),
-    Longitud: new FormControl('', Validators.required)
+    Latitud: new FormControl('', [Validators.required, Validators.min(-90), Validators.max(90)]),
+    Longitud: new FormControl('', [Validators.required, Validators.min(-180) , Validators.max(180)])
   })
 
   formularioParaEditar = new FormGroup({
@@ -34,8 +34,8 @@ export class MisProductosComponent implements OnInit {
     volumen: new FormControl('', Validators.required),
     imagenUrl: new FormControl('', Validators.required),
     descripcion: new FormControl('', Validators.required),
-    Latitud: new FormControl('', Validators.required),
-    Longitud: new FormControl('', Validators.required)
+    Latitud: new FormControl('', [Validators.required, Validators.min(-90), Validators.max(90)]),
+    Longitud: new FormControl('', [Validators.required, Validators.min(-180) , Validators.max(180)])
   })
 
 //Auxiliar de la base de datos filtrada
