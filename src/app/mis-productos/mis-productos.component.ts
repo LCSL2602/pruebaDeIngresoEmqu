@@ -126,7 +126,7 @@ export class MisProductosComponent implements OnInit {
       descripcion: this.descripcionDeVenta[0].descripcion,
       Latitud:this.descripcionDeVenta[0].Latitud,
       Longitud:this.descripcionDeVenta[0].Longitud,
-      imagenUrl: this.descripcionDeVenta[0].imagenUrl
+      imagenUrl: ''
     })
   }
 
@@ -134,7 +134,7 @@ export class MisProductosComponent implements OnInit {
     this.nuevaVenta = this.formularioParaEditar.value
     this.nuevaVenta.id = this.descripcionDeVenta[0].id
     this.nuevaVenta.imagenUrl = 'data:image/png;base64,' + btoa(this.imagen)
-    let indice = this.productosEnVenta.indexOf(this.nuevaVenta.id)
+    let indice = this.productosEnVenta.indexOf(this.descripcionDeVenta[0])
     this.productosEnVenta.splice(indice , 1 , this.nuevaVenta)
   }
 
